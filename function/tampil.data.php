@@ -1,28 +1,7 @@
 <?php
-function tampil_data($column, $key) {
-  global $link;
-
-  $query  = "SELECT * FROM $column ORDER BY $key DESC";
-  $result = mysqli_query($link, $query);
-  return $result;
-}
-
-function tampil_data_detail($culumn, $table, $key) {
-  global $link;
-
-  $query  = "SELECT * FROM $culumn WHERE $table='$key'";
-  $result = mysqli_query($link, $query);
-
-  return $result;
-}
-
 function tampil_data_detail_str($culumn, $table, $key, $rowx) {
-  global $link;
-
   $query  = "SELECT * FROM $culumn WHERE $table='$key' ORDER BY $rowx DESC";
-  $result = mysqli_query($link, $query);
-
-  return $result;
+  return run($query);
 }
 
 function pilih_kolom($row, $culumn, $table, $key) {

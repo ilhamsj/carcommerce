@@ -9,23 +9,23 @@
   <!-- /.col-lg-3 -->
 
   <?php
-    $key = $_GET['id'];
-    $car = tampil_data_detail('cars', 'id_car', $key);
+    $value = $_GET['id'];
+    $car = tampil_data_detail('mobil', 'id_mobil', $value);
 
     while ($row = mysqli_fetch_assoc($car)) {
 
-      if (newDate($row['date_sold']) > 0) {
-        $status = "Laku";
-      } else {
-        $status = "Ready";
-      }
-
-      $merk   = $row['car_merk'];
-      $model  = $row['car_model'];
-      $warna  = $row['car_color'];
-      $harga  = $row['car_price'];
-      $tahun  = $row['car_years'];
-      $gambar = $row['car_image'];
+      $id_mbl     = $row['id_mobil'];
+      $merk       = $row['id_merk'];
+      $no         = $row['no_polisi'];
+      $model      = $row['model'];
+      $warna      = $row['warna'];
+      $tahun      = $row['tahun'];
+      $harga      = $row['hrg_beli'];
+      $hrg_jual   = $row['hrg_jual'];
+      $tgl_beli   = $row['tgl_beli'];
+      $tgl_jual   = $row['tgl_jual'];
+      $gambar     = $row['gambar'];
+      $deskripsi  = $row['deskripsi'];
     }
 
   ?>

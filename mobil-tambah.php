@@ -2,64 +2,30 @@
 require_once 'core/init.php';
 include 'view/header.php';
 
-if (isset($_SESSION['user'])) {
-  if (cek_status($_SESSION['user']) == 1) {
-
+if ($login == true) {
+  if ($super_user == true) {
     if (isset($_POST['tambah'])) {
 
-      $id_car = autonumber(id_akhir('cars', 'id_car'), 3, 4);
+      $col1   = autonumber(id_akhir('mobil', 'id_mobil'), 3, 4);
+      $col2   = $_POST['merk'];
+      $col3   = $_POST['no'];
+      $col4   = $_POST['model'];
+      $col5   = $_POST['warna'];
+      $col6   = $_POST['tahun'];
+      $col7   = $_POST['beli'];
+      $col8   = $_POST['jual'];
+      $col9   = $_POST['tglbeli'];
+      $col10  = null;
+      $col11  = $_FILES['gambar']['name'];
+      $col12  = "lorem lorem";
 
-      $col1 = $_POST['no'];
-      $col2 = $_POST['merk'];
-      $col3 = $_POST['tipe'];
-      $col4 = $_POST['warna'];
-      $col5 = $_POST['tahun'];
-      $col6 = $_POST['beli'];
-      $col7 = $_POST['jual'];
-      $col8 = $_POST['tglbeli'];
-      $col9 = null;//$_POST['tgljual'];
       $asal  = $_FILES['gambar']['tmp_name'];
-      $col10 = $_FILES['gambar']['name'];
 
-      if ( empty(trim($col1))) {
-        $error = "No Plat Tidak boleh kosong";
+      if (tambah_data($col1, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10, $col11, $col12)) {
+        move_uploaded_file($asal, "upload/".$col11);
+        redirect_url('index.php');
       } else {
-        if (empty(trim($col2))) {
-          $error = "merk tidak boleh kosong";
-        } else {
-          if (empty(trim($col3))) {
-            $error = "Tipe mobil tidak boleh kosong";
-          } else {
-            if (empty(trim($col4))) {
-              $error = "Warna tidak boleh kosong";
-            } else {
-              if (empty(trim($col5))) {
-                $error = "Tahun tidak boleh kosong";
-              } else {
-                if (empty(trim($col6))) {
-                  $error = "Harga beli tidak boleh kosong";
-                } else {
-                  if (empty(trim($col8))) {
-                    $error = "Tanggal beli tidak boleh kosong";
-                  } else {
-                    if (empty(trim($col10))) {
-                      $error = "Gambar tidak boleh kosong";
-                    } else {
-                      if (tambah('cars', $id_car, $col1, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10)) {
-                        move_uploaded_file($asal, "upload/".$col10);
-                        // $message = "Data Berhasil ditambahkan " . '<a href="index.php">Home</a>';
-                        redirect_url('index.php');
-                      } else {
-                        echo "ga berhasil";
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
+        echo "g berhasil";
       }
     }
 ?>
@@ -82,50 +48,50 @@ if (isset($_SESSION['user'])) {
           <div class="form-row">
             <div class="form-group col">
               <label for="no">No. Polisi</label>
-              <input type="text" class="form-control" name="no" pattern=".{6,}" title="Six or more characters">
+              <input type="text" class="form-control" name="no" required >
             </div>
 
             <div class="form-group col">
               <label for="merk">Merk</label>
-              <?php $result = tampil_data('merk', 'merk'); ?>
+              <?php $result = tampil_data('merk', 'id_merk'); ?>
 
               <select class="form-control" id="merk" name="merk">
               <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                <option><?=$row['merk']?></option>
+                <option value="<?=$row['id_merk']?>"><?=$row['merk_mbl']?></option>
               <?php } ?>
               </select>
             </div>
-            
+
             <div class="form-group col">
-              <label for="tipe">Tipe</label>
-              <input type="text" class="form-control" name="tipe" pattern=".{6,}" title="Six or more characters">
+              <label for="model">model</label>
+              <input type="text" class="form-control" name="model" required>
             </div>
             <div class="form-group col">
               <label for="warna">Warna</label>
-              <input type="text" class="form-control" name="warna" pattern=".{3,}" title="3 or more characters">
+              <input type="text" class="form-control" name="warna" required>
             </div>
             <div class="form-group col">
               <label for="tahun">Tahun</label>
-              <input type="number" class="form-control" name="tahun" pattern=".{4,}" title="4 or more characters">
+              <input type="number" class="form-control" name="tahun" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col">
               <label for="beli">Harga Beli</label>
-              <input type="number" class="form-control" name="beli" placeholder="Rp" pattern=".{6,}" title="Six or more characters">
+              <input type="number" class="form-control" name="beli" placeholder="Rp" required>
             </div>
 
             <div class="form-group col">
               <label for="jual">Harga Jual</label>
-              <input type="number" class="form-control" name="jual" placeholder="Rp" pattern=".{6,}" title="Six or more characters">
+              <input type="number" class="form-control" name="jual" placeholder="Rp" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col">
               <label for="tglbeli">Tanggal Beli</label>
-              <input type="date" class="form-control" name="tglbeli">
+              <input type="date" class="form-control" name="tglbeli" required>
             </div>
 
             <div class="form-group col">
@@ -136,7 +102,7 @@ if (isset($_SESSION['user'])) {
 
           <div class="form-group">
             <label for="gambar">Upload Gambar</label>
-            <input type="file" class="form-control-file" name="gambar">
+            <input type="file" class="form-control-file" name="gambar" required>
           </div>
 
           <div class="form-group">
@@ -154,20 +120,18 @@ if (isset($_SESSION['user'])) {
       </div>
     </div>
     <!-- /.card -->
-
   </div>
   <!-- /.col-lg-9 -->
-
 </div>
 <!-- /.row -->
 
 
 <?php
   } else {
-    header('Location: index.php');
+    redirect_url('index.php');
   }
 } else {
-  header('Location: login.php');
+  redirect_url('login.php');
 }
 require_once 'view/footer.php';
 ?>

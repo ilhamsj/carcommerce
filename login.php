@@ -1,33 +1,23 @@
-<?php require_once 'core\init.php'; ?>
-<?php include 'view\header.php'; ?>
 <?php
+require_once 'core\init.php';
+include 'view\header.php';
 
-if (isset($_SESSION["user"])) {
-  header('Location: index.php');
+if ($login == true) {
+  redirect_url('index.php');
 } else {
   if (isset($_POST['login'])) {
 
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
-    if (!empty(trim($user)) && !empty(trim($pass))) {
-      if (cek_data($user, $pass)) {
-        $_SESSION["user"] = $user;
-
-        if (cek_status($_SESSION['user']) == 1) {
-          header('Location: index.php');
-        } else {
-          header('Location: index.php');
-        }
-      } else {
-        $error = 'Username dan password tidak ditemukan';
-      }
+    if (cek_data($user, $pass)) {
+      $_SESSION["user"] = $user;
+      redirect_url('index.php');
     } else {
-      $error = 'Username dan password wajib diisi  ';
+      $error = 'Username dan password tidak ditemukan';
     }
   }
 }
-
 ?>
 
 <div class="row single">
@@ -37,12 +27,12 @@ if (isset($_SESSION["user"])) {
 
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
       </div>
 
       <div class="form-group">

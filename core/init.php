@@ -3,6 +3,8 @@ session_start();
 
 require_once 'function\connection.php';
 require_once 'function\response.php';
+require_once 'function\ultimate.php';
+
 require_once 'function\user.php';
 
 require_once 'function\tampil.data.php';

@@ -1,21 +1,20 @@
 <?php
-function update_data($column, $row, $key, $col1, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10) {
-  global $link;
+function update_data($column, $key, $value, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10, $col11, $col12) {
+  $data2  = 'id_merk';
+  $data3  = 'no_polisi';
+  $data4  = 'model';
+  $data5  = 'warna';
+  $data6  = 'tahun';
+  $data7  = 'hrg_beli';
+  $data8  = 'hrg_jual';
+  $data9  = 'tgl_beli';
+  $data10 = 'tgl_jual';
+  $data11 = 'gambar';
+  $data12 = 'deskripsi';
 
-  $data1  = 'car_nopolice';
-  $data2  = 'car_merk';
-  $data3  = 'car_model';
-  $data4  = 'car_color';
-  $data5  = 'car_years';
-  $data6  = 'car_purchase';
-  $data7  = 'car_price';
-  $data8  = 'date_purchase';
-  $data9  = 'date_sold';
-  $data10 = 'car_image';
-
-  $query  = "UPDATE $column SET $data1='$col1', $data2='$col2', $data3='$col3', $data4='$col4', $data5='$col5', $data6='$col6', $data7='$col7', $data8='$col8', $data9='$col9',$data10='$col10' WHERE $row='$key'";
-  $result = mysqli_query($link, $query);
-
-  return $result;
+  $query  = "UPDATE $column
+  SET $data2='$col2', $data3='$col3', $data4='$col4', $data5='$col5', $data6='$col6', $data7='$col7', $data8='$col8',
+  $data9='$col9', $data10='$col10', $data11='$col11', $data12='$col12' WHERE $key='$value'";
+  return run($query);
 }
 ?>

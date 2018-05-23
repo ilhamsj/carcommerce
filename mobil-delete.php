@@ -1,31 +1,29 @@
 <?php
 require_once 'core/init.php';
-$key = $_GET['id'];
+include 'view/header.php';
 
-if (isset($_SESSION['user'])) {
-  if (cek_status($_SESSION['user']) == 1) {
+if ($login == true) {
+  if ($super_user == true) {
 
     $value = $_GET['id'];
-    
-    $file = pilih_kolom('car_image', 'cars', 'id_car', $key);
+    $file = pilih_kolom('gambar', 'mobil', 'id_mobil', $value);
 
     if (unlink('upload/'.$file)) {
-      if (hapus_data('cars', 'id_car', $value)) {
-        header('Location: index.php');
+      if (hapus_data('mobil', 'id_mobil', $value)) {
+        redirect_url('index.php');
       } else {
         echo "gagal hapus data";
       }
     } else {
-      hapus_data('cars', 'id_car', $value);
-      header('Location: index.php');
+      hapus_data('mobil', 'id_mobil', $value);
+      redirect_url('index.php');
     }
 
-
   } else {
-    header('Location: index.php');
+    redirect_url('index.php');
   }
 } else {
-  header('Location: login.php');
+  redirect_url('login.php');
 }
 
 ?>

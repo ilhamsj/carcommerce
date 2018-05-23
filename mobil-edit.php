@@ -2,59 +2,61 @@
 require_once 'core/init.php';
 include 'view/header.php';
 
-if (isset($_SESSION['user'])) {
-  if (cek_status($_SESSION['user']) == 1) {
+if ($login == true) {
+  if ($super_user == true) {
 
-    $key = $_GET['id'];
-    $car = tampil_data_detail('cars', 'id_car', $key);
+    $value = $_GET['id'];
+    $car = tampil_data_detail('mobil', 'id_mobil', $value);
+
     while ($row = mysqli_fetch_assoc($car)) {
-      $merk       = $row['car_merk'];
-      $model      = $row['car_model'];
-      $warna      = $row['car_color'];
-      $harga_jual = $row['car_price'];
-      $harga_beli = $row['car_purchase'];
-      $tahun      = $row['car_years'];
-      $no         = $row['car_nopolice'];
-      $tgl_beli   = $row['date_purchase'];
-      $tgl_jual   = $row['date_sold'];
-      $gambarawal = $row['car_image'];
+
+      $id_mbl     = $row['id_mobil'];
+      $merk       = $row['id_merk'];
+      $no         = $row['no_polisi'];
+      $model      = $row['model'];
+      $warna      = $row['warna'];
+      $tahun      = $row['tahun'];
+      $hrg_beli   = $row['hrg_beli'];
+      $hrg_jual   = $row['hrg_jual'];
+      $tgl_beli   = $row['tgl_beli'];
+      $tgl_jual   = $row['tgl_jual'];
+      $gambar     = $row['gambar'];
+      $deskripsi  = $row['deskripsi'];
     }
 
     if (isset($_POST['tambah'])) {
 
-      $col1  = $_POST['no'];
-      $col2  = $_POST['merk'];
-      $col3  = $_POST['tipe'];
-      $col4  = $_POST['warna'];
-      $col5  = $_POST['tahun'];
-      $col6  = $_POST['beli'];
-      $col7  = $_POST['jual'];
-      $col8  = $_POST['tglbeli'];
-      $col9  = $_POST['tgljual'];;
+      $col2   = $_POST['merk'];
+      $col3   = $_POST['no'];
+      $col4   = $_POST['model'];
+      $col5   = $_POST['warna'];
+      $col6   = $_POST['tahun'];
+      $col7   = $_POST['beli'];
+      $col8   = $_POST['jual'];
+      $col9   = $_POST['tglbeli'];
+      $col10  = $tgl_jual;
+      $col11  = $_FILES['gambarbaru']['name'];
+      $col12  = "lorem lorem";
 
       $asal  = $_FILES['gambarbaru']['tmp_name'];
 
       switch ($asal) {
         case !empty(!is_null($asal)):
-          $col10 = $_FILES['gambarbaru']['name'];
-          unlink('upload/'.$gambarawal);
-          move_uploaded_file($asal, 'upload/'.$col10);
+          $col11 = $_FILES['gambarbaru']['name'];
+          unlink('upload/'.$gambar);
+          move_uploaded_file($asal, 'upload/'.$col11);
           break;
 
         default:
-          $col10 = $gambarawal;
+          $col11 = $gambar;
           break;
       }
 
-      //eksekusi update
-
-      if (update_data('cars', 'id_car', $key, $col1, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10)) {
-         //echo '<META HTTP-EQUIV=REFRESH CONTENT="1; '.$url.'">';
+      if (update_data('mobil', 'id_mobil', $value, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10, $col11, $col12)) {
          redirect_url('index.php');
       } else {
         $message = "Ada masalah saat update";
       }
-
     }
 ?>
 
@@ -77,19 +79,25 @@ if (isset($_SESSION['user'])) {
 
             <div class="form-group col">
               <label for="merk">Merk</label>
-              <?php $result = tampil_pengecualian('merk', 'merk', $merk, 'merk'); ?>
 
               <select class="form-control" id="merk" name="merk">
-                <option value="<?=$merk?>"><?=$merk?></option>
-              <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                <option value="<?=$row['merk']?>"><?=$row['merk']?></option>
-              <?php } ?>
+                <option value="<?=$merk?>"><?=pilih_kolom('merk_mbl', 'merk', 'id_merk', $merk)?></option>
+                <?php
+                  $result = tampil_data_beda('merk', 'id_merk', $merk);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                  <option value="<?=$row['id_merk']?>"><?=$row['merk_mbl']?></option>
+                <?php } ?>
+
               </select>
             </div>
-
             <div class="form-group col">
-              <label for="tipe">Tipe</label>
-              <input type="text" class="form-control" name="tipe" value="<?=$model?>">
+              <label for="no">No. Polisi</label>
+              <input type="text" class="form-control" name="no" value="<?= $no ?>">
+            </div>
+            <div class="form-group col">
+              <label for="model">model</label>
+              <input type="text" class="form-control" name="model" value="<?=$model?>">
             </div>
             <div class="form-group col">
               <label for="warna">Warna</label>
@@ -99,21 +107,16 @@ if (isset($_SESSION['user'])) {
               <label for="tahun">Tahun</label>
               <input type="number" class="form-control" name="tahun" value="<?= $tahun?>">
             </div>
-            <div class="form-group col">
-              <label for="no">No. Polisi</label>
-              <input type="text" class="form-control" name="no" value="<?= $no ?>">
-            </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col">
               <label for="beli">Harga Beli</label>
-              <input type="number" class="form-control" name="beli" value="<?= $harga_beli ?>">
+              <input type="number" class="form-control" name="beli" value="<?= $hrg_beli ?>">
             </div>
-
             <div class="form-group col">
               <label for="jual">Harga Jual</label>
-              <input type="number" class="form-control" name="jual"  value="<?= $harga_jual ?>">
+              <input type="number" class="form-control" name="jual"  value="<?= $hrg_jual ?>">
             </div>
           </div>
 
@@ -125,20 +128,13 @@ if (isset($_SESSION['user'])) {
 
             <div class="form-group col">
               <label for="tgljual">Tanggal Jual</label>
-              <?php
-              if ($tgl_jual == null) {
-                $tgl_jual_baru = null;
-              } else {
-                $tgl_jual_baru = newDate($tgl_jual);
-              }
-              ?>
-              <input type="date" class="form-control" name="tgljual" value="<?= $tgl_jual_baru ?>" disabled>
+              <input type="date" class="form-control" name="tgljual" value="<?= newDate($tgl_jual) ?>" disabled>
             </div>
           </div>
 
           <div class="input-group mb-3">
             <div class="cust  om-file col-md-4">
-                <img class="card-img-top" src="upload\<?=$gambarawal?>" alt="<?=$gambarawal ?>">
+                <img class="card-img-top" src="upload\<?=$gambar?>" alt="<?=$gambar ?>">
             </div>
           </div>
 
@@ -166,10 +162,10 @@ if (isset($_SESSION['user'])) {
 
 <?php
   } else {
-    header('Location: index.php');
+    redirect_url('index.php');
   }
 } else {
-  header('Location: login.php');
+  redirect_url('login.php');
 }
 require_once 'view/footer.php';
 ?>

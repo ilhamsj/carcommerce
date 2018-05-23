@@ -10,7 +10,6 @@ require_once 'function\user.php';
 require_once 'function\tampil.data.php';
 require_once 'function\tambah.data.php';
 require_once 'function\update.data.php';
-require_once 'function\hapus.data.php';
 require_once 'function\transaksi.php';
 require_once 'function\filter.php';
 require_once 'function\daftar.user.php';

@@ -34,4 +34,12 @@ function tglstatus($tgljual, $kondisi) {
   return $tgl_jual;
 }
 
+function badge($jual) {
+  if ($jual > null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 ?>

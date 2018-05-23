@@ -45,4 +45,26 @@ function tambah_data($col1, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $co
   $query  = "INSERT INTO mobil VALUES ('$col1', '$col2', '$col3', '$col4', '$col5', '$col6', '$col7', '$col8', '$col9', '$col10', '$col11', '$col12')";
   return run($query);
 }
+
+//
+function pilih_kolom($column, $table, $key, $value) {
+  $query  = "SELECT $column FROM $table WHERE $key='$value'";
+
+  while ($row = mysqli_fetch_assoc(run($query))):
+    return $row[$column];
+  endwhile;
+}
+
+//
+function hapus_data($column, $value, $key) {
+    $query  = "DELETE FROM $column WHERE $value='$key'";
+  return run($query);
+}
+
+//
+function tampil_data_beda($column, $key, $value) {
+  $query  = "SELECT * FROM $column WHERE $key != '$value'";
+  return run($query);
+}
+
 ?>

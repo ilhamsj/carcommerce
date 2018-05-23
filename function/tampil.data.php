@@ -4,21 +4,6 @@ function tampil_data_detail_str($culumn, $table, $key, $rowx) {
   return run($query);
 }
 
-function pilih_kolom($row, $culumn, $table, $key) {
-  global $link;
-
-  $query  = "SELECT $row FROM $culumn WHERE $table=$key";
-  $result = mysqli_query($link, $query);
-
-  if (mysqli_num_rows($result) == 0) {
-    $gambar = '';
-  } else {
-    while ($row = mysqli_fetch_assoc($result)) {
-      $gambar = $row['car_image'];
-    }
-  }
-  return $gambar;
-}
 
 function id_akhir($column, $key) {
   global $link;

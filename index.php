@@ -1,5 +1,9 @@
-<?php require_once 'core/init.php'; ?>
-<?php include 'view/header.php'; ?>
+<?php
+require_once 'core/init.php';
+include 'view/header.php';
+$result = tampil_data('mobil', 'id_mobil');
+?>
+
 <div class="row">
 
   <div class="col-lg-3 mt-4">
@@ -13,10 +17,7 @@
         <span class="badge badge-success">New Arrival</span>
     </div>
 
-    <?php
-    include 'view\carousel.php';
-    $result = tampil_data('mobil', 'id_mobil');
-    ?>
+    <?php include 'view\carousel.php'; ?>
 
     <div class="row">
 
@@ -24,16 +25,16 @@
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
           <div class="card-header">
-            <a href="mobil-detail.php?id=<?=$row['id_mobil']?>"><?= $row['id_merk'] .' '. $row['model'] . ' ' . $row['tahun']?></a>
+            <a href="mobil-detail.php?id=<?=$row['id_mobil']?>"><?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) .' '. $row['model'] . ' ' . $row['tahun']?></a>
           </div>
           <div class="card-body">
             <img class="card-img-top" src="upload/<?=$row['gambar']?>" alt="">
-            <?php
-            if (newDate($row['tgl_jual']) > 0) { ?>
+
+            <?php if (badge($row['tgl_jual']) == true): ?>
               <span class="badge badge-danger"> Laku </span>
-            <?php } else { ?>
-              <span class="badge badge-success">Ready</span>
-            <?php } ?>
+            <?php else: ?>
+              <span class="badge badge-success"> Ready </span>
+            <?php endif; ?>
 
             <h5> <?= rupiah($row['hrg_jual']) ?></h5>
           </div>

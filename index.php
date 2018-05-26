@@ -24,13 +24,15 @@ $result = tampil_data('mobil', 'id_mobil');
     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <div class="card-header">
-            <a href="mobil-detail.php?id=<?=$row['id_mobil']?>">
-              <?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) .' '. $row['model'] . ' ' . $row['tahun']?>
-            </a>
-          </div>
-          <div class="card-body">
+
             <img class="card-img-top" src="upload/<?=$row['gambar']?>" alt="">
+
+          <div class="card-body">
+            <h5>
+              <a href="mobil-detail.php?id=<?=$row['id_mobil']?>">
+                <?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) .' '. $row['model'] . ' ' . $row['tahun']?>
+              </a>
+            </h5>
 
             <?php if (badge($row['tgl_jual']) == true): ?>
               <span class="badge badge-danger"> Laku </span>
@@ -39,19 +41,20 @@ $result = tampil_data('mobil', 'id_mobil');
             <?php endif; ?>
 
             <h5> <?= rupiah($row['hrg_jual']) ?></h5>
-          </div>
-          <div class="card-footer">
-          <?php if ($login == true): ?>
-            <?php if ($super_user == true): ?>
-              <a class="btn btn-info" href="mobil-tambah.php">Add</a>
-              <a class="btn btn-secondary" href="mobil-edit.php?id=<?=$row['id_mobil']?>">Edit </a>
-              <a class="btn btn-danger" href="mobil-delete.php?id=<?=$row['id_mobil']?>">Del</a>
-            <?php else: ?>
-              <a class="btn btn-outline-primary" href="transaksi-wishlist.php?id=<?=$row['id_mobil']?>">Beli</a>
-              <a class="btn btn-outline-danger" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-              <a class="btn btn-outline-primary" href="tanya-admin.php">Chat</a>
-            <?php endif; ?>
-          <?php endif; ?>
+
+            <p>
+              <?php if ($login == true): ?>
+                <?php if ($super_user == true): ?>
+                  <a class="btn btn-info btn-sm" href="mobil-tambah.php">Add</a>
+                  <a class="btn btn-secondary btn-sm" href="mobil-edit.php?id=<?=$row['id_mobil']?>">Edit </a>
+                  <a class="btn btn-danger btn-sm" href="mobil-delete.php?id=<?=$row['id_mobil']?>">Del</a>
+                <?php else: ?>
+                  <a class="btn btn-outline-danger btn-sm" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                  <a class="btn btn-outline-primary btn-sm" href="tanya-admin.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+                <?php endif; ?>
+              <?php endif; ?>
+              <a class="btn btn-info btn-sm" href="transaksi-wishlist.php?id=<?=$row['id_mobil']?>">Beli</a>
+            </p>
           </div>
         </div>
       </div>

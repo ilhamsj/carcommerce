@@ -70,11 +70,7 @@ if ($login == true) {
   <div class="col-lg-9">
 
     <div class="card card-outline-secondary my-4">
-      <div class="card-header">
-        <div class="text-center">
-            <img class="img-fluid" src="upload\<?=$gambar?>" alt="<?=$gambar ?>">
-        </div>
-      </div>
+      <img class="img-fluid" src="upload\<?=$gambar?>" alt="<?=$gambar ?>">
       <div class="card-body">
         <form method="post" enctype="multipart/form-data">
           <div class="form-row">

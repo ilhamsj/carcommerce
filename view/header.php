@@ -9,24 +9,21 @@
 
     <title>Shop Homepage - Mobil Shop</title>
     <link rel="icon" href="assets\images\apple-touch-icon.png">
-    <link rel="stylesheet" href="node_modules\startbootstrap-shop-homepage\vendor\bootstrap\css\bootstrap.min.css">
     <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.css">
+
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
     <style media="screen">
-      .single {
-        margin: 50px auto;
-        min-height: 430px;
-      }
+    body {
+      padding-top: 54px;
+    }
 
-      .x{
-        min-height: 800px;
+    @media (min-width: 992px) {
+      body {
+        padding-top: 56px;
       }
+    }
+
     </style>
-
-    <!-- Bootstrap core CSS -->
-    <link href="node_modules\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="node_modules\startbootstrap-shop-homepage\css\shop-homepage.css" rel="stylesheet">
   </head>
 
   <body>
@@ -55,7 +52,6 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
               </a>
             </li>
-
           </ul>
         </div>
       </div>

@@ -31,18 +31,13 @@
   ?>
   <div class="col-lg-9">
     <div class="card card-outline-secondary my-4">
-      <div class="card-header">
-        Detail Mobil
-      </div>
+      <img class="card-img-top img-fluid" src="upload\<?=$gambar?>" alt="">
       <div class="card-body">
         <div class="card-title">
           <h2>
             <?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $merk) . ' ' . $model . ' ' . $tahun;?>
           </h2>
           <hr>
-        </div>
-        <div class="">
-          <img class="card-img-top img-fluid" src="upload\<?=$gambar?>" alt="">
         </div>
       </div>
       <div class="card-footer">

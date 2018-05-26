@@ -2,8 +2,8 @@
 require_once 'core/init.php';
 include 'view/header.php';
 
-if (isset($_SESSION['user'])) {
-  if (cek_status($_SESSION['user']) == 1) {
+if ($login == true) {
+  if ($super_user == true) {
 ?>
 
 <div class="row">
@@ -28,7 +28,7 @@ if (isset($_SESSION['user'])) {
         </form>
 
         <?php
-        $result = tampil_data('users', 'id_user');
+        $result = tampil_data('member', 'id_member');
         ?>
 
         <table class="table table-responsive" id="myTable">
@@ -41,12 +41,10 @@ if (isset($_SESSION['user'])) {
             </tr>
           </thead>
           <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)) {
-              $id = $row['id_user'];
-            ?>
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <tr>
-              <td><?= $id ?></td>
-              <td><?= ucfirst($row['fullname']); ?></td>
+              <td><?= $row['id_member']; ?></td>
+              <td><?= ucfirst($row['nm_lgkp']); ?></td>
               <td><?= ucfirst($row['email']); ?></td>
               <td><?= ucfirst($row['alamat']); ?></td>
             </tr>
@@ -70,10 +68,10 @@ if (isset($_SESSION['user'])) {
 
 <?php
   } else {
-    header('Location: index.php');
+    redirect_url('index.php');
   }
 } else {
-  header('Location: login.php');
+  redirect_url('login.php');
 }
 require_once 'view/footer.php';
 ?>

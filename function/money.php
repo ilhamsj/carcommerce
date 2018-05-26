@@ -35,7 +35,7 @@ function tglstatus($tgljual, $kondisi) {
 }
 
 function badge($jual) {
-  if ($jual > null) {
+  if ($jual > 0) {
     return true;
   } else {
     return false;

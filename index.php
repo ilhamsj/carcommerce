@@ -25,7 +25,9 @@ $result = tampil_data('mobil', 'id_mobil');
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
           <div class="card-header">
-            <a href="mobil-detail.php?id=<?=$row['id_mobil']?>"><?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) .' '. $row['model'] . ' ' . $row['tahun']?></a>
+            <a href="mobil-detail.php?id=<?=$row['id_mobil']?>">
+              <?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) .' '. $row['model'] . ' ' . $row['tahun']?>
+            </a>
           </div>
           <div class="card-body">
             <img class="card-img-top" src="upload/<?=$row['gambar']?>" alt="">

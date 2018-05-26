@@ -8,6 +8,7 @@
     <meta name="author" content="">
 
     <title>Shop Homepage - Mobil Shop</title>
+    <link rel="icon" href="assets\images\apple-touch-icon.png">
     <link rel="stylesheet" href="node_modules\startbootstrap-shop-homepage\vendor\bootstrap\css\bootstrap.min.css">
     <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.css">
     <style media="screen">

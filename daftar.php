@@ -2,13 +2,12 @@
 require_once 'core\init.php';
 include 'view\header.php';
 
-if (isset($_SESSION["user"])) {
-  header('Location: index.php');
+if ($login == true) {
+  redirect_url('index.php');
 } else {
-
   if (isset($_POST['daftar'])) {
 
-    $col1 = autonumber(id_akhir('users', 'id_user'), 3, 4);
+    $col1 = autonumber(id_akhir('member', 'id_member'), 3, 4);
     $col2 = $_POST['username'];
     $col3 = $_POST['password'];
     $col4 = 0;
@@ -16,26 +15,16 @@ if (isset($_SESSION["user"])) {
     $col6 = $_POST['email'];
     $col7 = $_POST['alamat'];
 
-    if (empty(trim($col2))) {
-      $error = "Username tidak boleh kosong";
+    if (cek_username($col2) == true) {
+      // if (daftar('member', $col1, $col2, $col3, $col4, $col5, $col6, $col7)) {
+      //   $_SESSION['user'] = $col2;
+      //   redirect_url('index.php');
+      // } else {
+      //   $error = "Ada masalah saat daftar";
+      // }
     } else {
-      if (cek_username($col2)) {
-
-        if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL)) {
-            $error = "Email is not valid";
-        } else {
-          if (daftar($col1, $col2, $col3, $col4, $col5, $col6, $col7)) {
-            $_SESSION['user'] = $col2;
-            redirect_url('index.php');
-          } else {
-            $error = "Ada masalah saat daftar";
-          }
-        }//email ketersdeiaan
-
-      } else {
-        $error = "Username $col2 tidak tersedia";
-      }
-    } //username
+      $error = "User sudah ada";
+    }
   }
 }
 ?>
@@ -47,29 +36,28 @@ if (isset($_SESSION["user"])) {
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" placeholder="Username" pattern=".{5,}" title="five or more characters">
+          <input type="text" class="form-control" name="username" placeholder="Username" required>
         </div>
         <div class="form-group col-md-6">
           <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{6,}" title="Six or more characters">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="fullname">Nama Lengkap</label>
-          <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap">
+          <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap" required>
         </div>
         <div class="form-group col-md-6">
           <label for="email">email</label>
-          <input type="email" class="form-control" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          <input type="email" class="form-control" name="email" placeholder="Email" required>
         </div>
       </div>
 
-
       <div class="form-group">
         <label for="alamat">Alamat</label>
-        <input type="text" class="form-control" name="alamat" placeholder="Apartemen, studio, or floor">
+        <input type="text" class="form-control" name="alamat" placeholder="Apartemen, studio, or floor" required>
       </div>
 
       <div class="form-group">

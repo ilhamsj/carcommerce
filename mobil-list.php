@@ -2,8 +2,8 @@
 require_once 'core/init.php';
 include 'view/header.php';
 
-if (isset($_SESSION['user'])) {
-  if (cek_status($_SESSION['user']) == 1) {
+if ($login == true) {
+  if ($super_user == true) {
 ?>
 
 <div class="row">
@@ -27,47 +27,48 @@ if (isset($_SESSION['user'])) {
         </form>
 
         <?php
-        $result = tampil_data('cars', 'id_car');
+        $result = tampil_data('mobil', 'id_mobil');
         ?>
 
         <table class="table table-responsive" id="myTable">
           <thead>
           <tr>
-            <!-- <th>Id</th> -->
-            <th>No Polisi</th>
+            <th>ID</th>
             <th>Merk</th>
+            <th>No Polisi</th>
             <th>Model</th>
             <th>Warna</th>
             <th>Tahun</th>
             <th>Hrg Beli</th>
             <th>Hrg Jual</th>
             <th>Tgl Beli</th>
-            <th>Tgl Laku</th>
+            <th>Tgl Jual</th>
           </tr>
         </thead>
-          <tbody>
-          <?php while ($row = mysqli_fetch_assoc($result)) {
-            $id = $row['id_car'];
 
-            $tgl_beli = tglstatus($row['date_purchase'], 'Belum diisi');
-            $tgl_jual = tglstatus($row['date_sold'], 'Belum Laku');
-          ?>
-          <tr>
-            <!-- <td><?= $id ?></td> -->
-            <td><?= $row['car_nopolice'] ?></td>
-            <td><?= $row['car_merk'] ?></td>
-            <td><?= $row['car_model'] ?></td>
-            <td><?= $row['car_color'] ?></td>
-            <td><?= $row['car_years'] ?></td>
-            <td><?= rupiah($row['car_purchase']) ?></td>
-            <td><?= rupiah($row['car_price']) ?></td>
-            <td><?= $tgl_beli ?></td>
-            <td><?= $tgl_jual ?></td>
-          </tr>
-          <?php } ?>
-
+        <tbody>
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <tr>
+          <td> <span class="badge"><?= $row['id_mobil'] ?></span> </td>
+          <td><?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) ?></td>
+          <td><?= $row['no_polisi'] ?></td>
+          <td><?= $row['model'] ?></td>
+          <td><?= $row['warna'] ?></td>
+          <td><?= $row['tahun'] ?></td>
+          <td><?= rupiah($row['hrg_beli']) ?></td>
+          <td><?= rupiah($row['hrg_jual']) ?></td>
+          <td> <span class="badge"><?= newDate($row['tgl_beli']) ?></span> </td>
+          <td>
+            <?php if (badge($row['tgl_jual']) == true): ?>
+              <span class="badge badge-danger"> <?=newDate($row['tgl_jual'])?> </span>
+            <?php else: ?>
+              <span class="badge badge-success"> Belum Laku </span>
+            <?php endif; ?>
+          </td>
+        </tr>
+        <?php } ?>
         </tbody>
-        </table>
+      </table>
       </div>
       <div class="card-footer">
         <a href="cetak-mobil.php" class="btn btn-primary"> Cetak </a>
@@ -84,10 +85,10 @@ if (isset($_SESSION['user'])) {
 
 <?php
   } else {
-    header('Location: index.php');
+    redirect_url('index.php');
   }
 } else {
-  header('Location: login.php');
+  redirect_url('login.php');
 }
 require_once 'view/footer.php';
 ?>

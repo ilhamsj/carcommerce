@@ -2,6 +2,7 @@
 $error = '';
 $message = '';
 $super_user = $login = false;
+$total=0;
 /*
 status transaksi ->
 0 -> ontransfer - user telah klik transaksi dan mendapatkan metode pembayaran

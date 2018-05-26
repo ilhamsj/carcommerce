@@ -1,60 +1,75 @@
 <?php
 require_once 'core/init.php';
 include 'view/header.php';
+if ($login == true):
+  $id = $_GET['id'];
+
+  $pembayaran   = tampil_data_detail('pembayaran', 'id_bayar', $id);
+  while ($row = mysqli_fetch_assoc($pembayaran)):
+    $pms    = $row['id_pemesanan'];
+    $total  = $row['total_byr'];
+    $tgl    = $row['tgl_byr'];
+    $status = $row['status'];
+  endwhile;
+
+  $id_mobil = pilih_kolom('id_mobil', 'pemesanan', 'id_pemesanan', $pms);
+
+  if (isset($_POST['submit'])) {
+
+    $status = 1;
+    $bukti  = $_FILES['bukti']['name'];
+    $asal   = $_FILES['bukti']['tmp_name'];
+
+    if (update($bukti, $status, $id) && update_tgl_jual($id_mobil)) {
+      move_uploaded_file($asal, "upload/transaksi/".$bukti);
+    } else {
+      echo "g berhasil";
+    }
+  }
 ?>
 
-<div class="row">
-
-  <div class="col-lg-3 mt-4">
-    <?php include 'menu.php'; ?>
+<div class="row mt-4">
+  <div class="col-lg-3">
+      <?php include 'menu.php'; ?>
   </div>
-  <!-- /.col-lg-3 -->
+  <div class="col" style="font-family: roboto;">
+    <div class="card">
 
-  <div class="col-lg-9">
-
-    <div class="card card-outline-secondary my-4">
-      <div class="card-header">
-        Upload Bukti Pembayaran
-      </div>
-      <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
-
-          <div class="form-group">
-            <input type="file" name="bukti_pembayaran" class="form-control-file"/>
+      <?php if ($status == 1): ?>
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Transaksi Anda Telah Berhasil</h5>
+            <p class="card-text">Terimakasih</p>
+            <a href="index.php" class="btn btn-primary">Home</a>
           </div>
-
-          <small id="response" class="form-text text-muted"><?= $error; ?></small>
-          <button type="submit" class="btn btn-primary" name="upload">Upload</button>
-
-        </form>
-
-        <?php
-        if (isset($_POST['upload'])) {
-          $id         = $_GET['id'];
-          $asal       = $_FILES['bukti_pembayaran']['tmp_name'];
-          $gambar     = $_FILES['bukti_pembayaran']['name'];
-          $date_sold  = date('Y-m-d H:i:s');
-
-          if (upload_bukti($gambar, $id, $date_sold)) {
-            move_uploaded_file($asal, "upload/transaksi/".$gambar);
-            header('Location: profile.php');
-          } else {
-            echo "ada masalah";
-          }
-        }
-        ?>
-
-      </div>
-      <div class="card-footer">
-          Setelah Upload Admin akan melalukan Verivikasi Tunggu beberapa saat
-      </div>
+        </div>
+      <?php else: ?>
+          <div class="card-header">
+            Upload Bukti Bayar
+          </div>
+          <div class="card-body">
+            <p>Selesaikan pembayaran senilai</p>
+            <h5><?=rupiah($total)?></h5>
+            <p class="card-text">
+              Dengan Upload bukti transfer.
+            </p>
+            <form method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <input type="file" name="bukti" class="form-control-file" id="exampleFormControlFile1"> <br/>
+                <button type="submit" name="submit" class="btn btn-outline-primary">Upload</button>
+              </div>
+            </form>
+          </div>
+        <?php endif; ?>
     </div>
-    <!-- /.card -->
-
   </div>
-  <!-- /.col-lg-9 -->
-
 </div>
-<!-- /.row -->
 
-<?php require_once 'view/footer.php'; ?>
+<?php
+
+else:
+  redirect_url('login.php');
+endif;
+
+require_once 'view/footer.php';
+?>

@@ -2,8 +2,8 @@
 require_once 'core/init.php';
 include 'view/header.php';
 
-if (isset($_SESSION['user'])) {
-  if (cek_status($_SESSION['user']) == 1) {
+if ($login == true) {
+  if ($super_user == true) {
 ?>
 
 <div class="row">
@@ -29,7 +29,7 @@ if (isset($_SESSION['user'])) {
         </form>
 
         <?php
-        $result = tampil_data('transactions', 'id_transaction');
+        $result = tampil_data_detail('pembayaran', 'status', 1);
         ?>
 
         <table class="table table-responsive" id="myTable">
@@ -38,40 +38,18 @@ if (isset($_SESSION['user'])) {
               <th>ID Transaksi</th>
               <th>ID User</th>
               <th>Tanggal Transaksi</th>
-              <th>Action</th>
               <th>Jumlah Bayar</th>
-              <th>Deskripsi</th>
             </tr>
           </thead>
           <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) {
-              $id = $row['id_transaction'];
+              $id = $row['id_bayar'];
             ?>
             <tr>
               <td><?= $id ?></td>
-              <td><?= $row['id_user'] ?></td>
-              <td><?= newDate($row['transaction_date']) ?></td>
-
-              <?php
-              switch ($row['transaction_status']) {
-                case "0":
-                  $status = "on wishlist";
-                  break;
-
-                case "1":
-                  $_SESSION['car'] = $row['id_car'];
-                  $status = "<a href='transaksi-verifikasi.php?id=".$id."'>verify</a>";
-                  break;
-
-                default:
-                  $status = "succes";
-                  break;
-              }
-              ?>
-
-              <td><?= $status; ?></td>
-              <td><?= rupiah($row['transaction_count']) ?></td>
-              <td><?= $row['description'] ?></td>
+              <td><?= $row['id_member'] ?></td>
+              <td><?= newDate($row['tgl_byr']) ?></td>
+              <td><?= rupiah($row['total_byr']) ?></td>
             </tr>
             <?php } ?>
 
@@ -93,10 +71,11 @@ if (isset($_SESSION['user'])) {
 
 <?php
   } else {
-    header('Location: index.php');
+    redirect_url('index.php');
   }
 } else {
-  header('Location: login.php');
+  redirect_url('login.php');
 }
+
 require_once 'view/footer.php';
 ?>

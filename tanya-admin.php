@@ -60,19 +60,9 @@ if (isset($_SESSION['user'])) {
         </form>
       </div>
     </div>
-    <!-- /.card -->
-
   </div>
-  <!-- /.col-lg-9 -->
-
 </div>
-<!-- /.row -->
-
-
 <?php
-  // } else {
-  //   header('Location: index.php');
-  // }
 } else {
   header('Location: login.php');
 }

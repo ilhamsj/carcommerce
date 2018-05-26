@@ -71,7 +71,9 @@ if ($login == true) {
 
     <div class="card card-outline-secondary my-4">
       <div class="card-header">
-        Tambah Mobil Baru
+        <div class="text-center">
+            <img class="img-fluid" src="upload\<?=$gambar?>" alt="<?=$gambar ?>">
+        </div>
       </div>
       <div class="card-body">
         <form method="post" enctype="multipart/form-data">
@@ -129,12 +131,6 @@ if ($login == true) {
             <div class="form-group col">
               <label for="tgljual">Tanggal Jual</label>
               <input type="date" class="form-control" name="tgljual" value="<?= newDate($tgl_jual) ?>" disabled>
-            </div>
-          </div>
-
-          <div class="input-group mb-3">
-            <div class="cust  om-file col-md-4">
-                <img class="card-img-top" src="upload\<?=$gambar?>" alt="<?=$gambar ?>">
             </div>
           </div>
 

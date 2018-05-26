@@ -17,4 +17,14 @@ function update_data($column, $key, $value, $col2, $col3, $col4, $col5, $col6, $
   $data9='$col9', $data10='$col10', $data11='$col11', $data12='$col12' WHERE $key='$value'";
   return run($query);
 }
+
+function update($bukti, $status, $id) {
+  $query = "UPDATE pembayaran SET bukti_byr='$bukti', status='$status' WHERE id_bayar='$id'";
+  return run($query);
+}
+
+function update_tgl_jual($id_mobil) {
+  $query = "UPDATE mobil SET tgl_jual=CURRENT_TIMESTAMP() WHERE id_mobil='$id_mobil'";
+  return run($query);
+}
 ?>

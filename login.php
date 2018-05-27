@@ -19,35 +19,52 @@ if ($login == true) {
   }
 }
 ?>
+<div class="row mt-4" style="min-height: 600px;">
 
-<div class="row single">
+  <div class="col-lg-8">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Fluid jumbotron</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="col-lg-4">
-    <h1>Silahkan login</h1>
-    <form method="post">
-
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username" required>
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h5 class="card-title">Silahkan login</h5>
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      <div class="card-body">
+        <form method="post">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control rounded-0" placeholder="Username" required>
+            <div class="invalid-feedback">Oops, you missed this one.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control rounded-0" placeholder="Password" required>
+          </div>
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Isi data anda dengan benar <?=$error?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-success" name="login">Login</button>
+        </form>
       </div>
 
-      <div class="form-group">
-        <span class="badge badge-danger"><?=$error?></span>
-      </div>
-
-      <button type="submit" class="btn btn-primary" name="login">Login</button>
-
-      <div class="form-group mt-4">
+      <div class="card-footer">
         <span class="text-muted">Belum punya akun ?</span>
-        <a href="daftar.php" class="badge badge-primary">Daftar</a>
+        <a href="daftar.php" class="btn btn-primary btn-sm">Daftar</a>
       </div>
-    </form>
-
+    </div>
   </div>
 </div>
-
 <?php require_once 'view/footer.php'; ?>

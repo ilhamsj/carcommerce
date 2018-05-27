@@ -44,7 +44,7 @@ if ($login == true):
       <?php include 'menu.php'; ?>
   </div>
 
-  <div class="col-lg-9" style="font-family: roboto;">
+  <div class="col-lg-9">
     <div class="row">
       <div class="col-sm-5">
         <div class="card">

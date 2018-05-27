@@ -3,7 +3,7 @@
 
 <div class="row">
 
-  <div class="col-lg-3 mt-4">
+  <div class="col-lg-3">
       <?php include 'menu.php'; ?>
   </div>
   <!-- /.col-lg-3 -->
@@ -30,7 +30,7 @@
 
   ?>
   <div class="col-lg-9">
-    <div class="card card-outline-secondary my-4">
+    <div class="card card-outline-secondary">
       <img class="card-img-top img-fluid" src="upload\<?=$gambar?>" alt="">
       <div class="card-body">
         <div class="card-title">

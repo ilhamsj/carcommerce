@@ -28,22 +28,22 @@ if ($login == true):
   }
 ?>
 
-<div class="row mt-4">
+<div class="row">
   <div class="col-lg-3">
       <?php include 'menu.php'; ?>
   </div>
-  <div class="col" style="font-family: roboto;">
-    <div class="card">
+  <div class="col">
+
 
       <?php if ($status == 1): ?>
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Transaksi Anda Telah Berhasil</h5>
-            <p class="card-text">Terimakasih</p>
-            <a href="index.php" class="btn btn-primary">Home</a>
-          </div>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Well done!</h4>
+          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+          <hr>
+          <p class="mb-0">Back to Home <a href="index.php">Home</a> </p>
         </div>
       <?php else: ?>
+        <div class="card">
           <div class="card-header">
             Upload Bukti Bayar
           </div>

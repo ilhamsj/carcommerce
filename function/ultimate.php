@@ -43,6 +43,12 @@ function tampil_data($column, $key) {
 }
 
 //
+function tampil_data_limit($column, $key) {
+  $query  = "SELECT * FROM $column ORDER BY $key DESC LIMIT 3";
+  return run($query);
+}
+
+//
 function tampil_data_detail($column, $key, $value) {
   $query  = "SELECT * FROM $column WHERE $key='$value'";
   return run($query);

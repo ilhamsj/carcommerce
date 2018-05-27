@@ -11,9 +11,8 @@ $result = tampil_data('mobil', 'id_mobil');
   <!-- /.col-lg-3 -->
 
   <div class="col-lg-9">
-    <div class="row">
-    <?php include 'view/carousel.php'; ?>
 
+    <div class="row">
     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">

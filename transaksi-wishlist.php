@@ -1,6 +1,5 @@
 <?php
 require_once 'core/init.php';
-include 'view/header.php';
 
 if ($login == true):
   if (isset($_GET['id'])):
@@ -10,7 +9,7 @@ if ($login == true):
     $col4 = 0;
 
     if (tambah_pemesanan('pemesanan', $col1, $col2, $col3, $col4)) {
-      redirect_url('profile.php');
+        redirect_url('profile.php');
     } else {
       echo "ada masalah";
     }
@@ -21,6 +20,4 @@ if ($login == true):
 else:
   redirect_url('login.php');
 endif;
-
-require_once 'view/footer.php';
 ?>

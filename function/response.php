@@ -1,6 +1,6 @@
 <?php
 $error = '';
-$message = '';
+$message = null;
 $super_user = $login = false;
 $total=0;
 /*

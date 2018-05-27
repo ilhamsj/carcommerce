@@ -8,14 +8,14 @@ if ($login == true) {
 
 <div class="row">
 
-  <div class="col-lg-3 mt-4">
+  <div class="col-lg-3">
     <?php include 'menu.php'; ?>
   </div>
   <!-- /.col-lg-3 -->
 
   <div class="col-lg-9">
 
-    <div class="card card-outline-secondary my-4">
+    <div class="card card-outline-secondary">
       <div class="card-header">
         Data Mobil
       </div>

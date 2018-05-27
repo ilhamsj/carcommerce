@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2018 at 05:45 PM
+-- Generation Time: May 27, 2018 at 05:10 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -108,12 +108,12 @@ CREATE TABLE `mobil` (
 --
 
 INSERT INTO `mobil` (`id_mobil`, `id_merk`, `no_polisi`, `model`, `warna`, `tahun`, `hrg_beli`, `hrg_jual`, `tgl_beli`, `tgl_jual`, `gambar`, `deskripsi`) VALUES
-('MBL0002', 'MRK0005', 'AB6666ZZ', 'Koeneshig', 'Merah Meri', 1995, 10000005, 1000002, '2018-04-29 17:00:00', '0000-00-00 00:00:00', 'lmb.jpg', 'lorem lorem'),
+('MBL0002', 'MRK0005', 'AB6666ZZ', 'Koeneshig', 'Merah Meri', 1995, 10000005, 1000002, '2018-04-29 17:00:00', '0000-00-00 00:00:00', 'maxresdefault.jpg', 'lorem lorem'),
 ('MBL0012', 'MRK0004', 'AB6666ZZ', 'Go', 'DSDDD', 2, 12, 123, '2018-05-19 17:00:00', '0000-00-00 00:00:00', 'maxresdefault.jpg', 'lorem lorem'),
-('MBL0013', 'MRK0004', 'XXXXXX', 'JDSFKD', 'bdbkjf', 2010, 200000000, 123, '2018-05-22 17:00:00', '0000-00-00 00:00:00', 'saas.jpg', 'lorem lorem'),
-('MBL0014', 'MRK0002', 'AB2222CC', 'dfgd', 'dsdg', 2010, 50000000, 200000000, '2018-05-21 17:00:00', '0000-00-00 00:00:00', 'Toyota_Etios_L_1.jpg', 'lorem lorem'),
-('MBL0015', 'MRK0001', 'AB2222ZZ', 'AAAA', 'WWWW', 2201, 1500000, 2000000, '2018-05-30 17:00:00', '0000-00-00 00:00:00', 'harga xenia bekas.jpg', 'lorem lorem'),
-('MBL0016', 'MRK0003', 'slfnssnkf', 'ksadnkj', 'sjkdfs', 1221, 11211111, 2222222, '2018-05-23 17:00:00', '0000-00-00 00:00:00', 'mobil88-Autogard2.jpg', 'lorem lorem');
+('MBL0013', 'MRK0004', 'XXXXXX', 'JDSFKD', 'bdbkjf', 2010, 200000000, 123, '2018-05-22 17:00:00', '0000-00-00 00:00:00', 'maxresdefault.jpg', 'lorem lorem'),
+('MBL0014', 'MRK0002', 'AB2222CC', 'dfgd', 'dsdg', 2010, 50000000, 200000000, '2018-05-21 17:00:00', '0000-00-00 00:00:00', 'maxresdefault.jpg', 'lorem lorem'),
+('MBL0015', 'MRK0001', 'AB2222ZZ', 'AAAA', 'WWWW', 2201, 1500000, 2000000, '2018-05-30 17:00:00', '2018-05-27 01:30:22', 'maxresdefault.jpg', 'lorem lorem'),
+('MBL0016', 'MRK0003', 'slfnssnkf', 'ksadnkj', 'sjkdfs', 1221, 11211111, 2222222, '2018-05-23 17:00:00', '2018-05-27 02:22:29', 'maxresdefault.jpg', 'lorem lorem');
 
 -- --------------------------------------------------------
 
@@ -132,6 +132,14 @@ CREATE TABLE `pembayaran` (
   `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_bayar`, `id_pemesanan`, `id_member`, `mtd_byr`, `total_byr`, `tgl_byr`, `bukti_byr`, `status`) VALUES
+('BYR0001', 'PMS0003', 'USR0011', 'mandiri', 2000000, '2018-05-27 01:29:39', 'ad2.jpg', '1'),
+('BYR0002', 'PMS0002', 'USR0011', 'mandiri', 2000000, '2018-05-27 02:19:09', 'bank.png', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -145,6 +153,14 @@ CREATE TABLE `pemesanan` (
   `tgl_pesan` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemesanan`
+--
+
+INSERT INTO `pemesanan` (`id_pemesanan`, `id_member`, `id_mobil`, `tgl_pesan`, `status`) VALUES
+('PMS0002', 'USR0011', 'MBL0016', '2018-05-27 02:41:07', '0'),
+('PMS0003', 'USR0011', 'MBL0015', '2018-05-27 02:41:15', '0');
 
 --
 -- Indexes for dumped tables

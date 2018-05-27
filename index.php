@@ -11,29 +11,30 @@ $result = tampil_data('mobil', 'id_mobil');
   <!-- /.col-lg-3 -->
 
   <div class="col-lg-9">
-    <div class="row">
     <?php include 'view/carousel.php'; ?>
-
-    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="upload/<?=$row['gambar']?>" alt="">
-          <div class="card-body">
-            <h5>
+    <div class="row">
+      <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="upload/<?=$row['gambar']?>" alt="upload/<?=$row['gambar']?>"></a>
+            <div class="card-body">
+              <h4 class="card-title">
               <a href="mobil-detail.php?id=<?=$row['id_mobil']?>">
                 <?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) .' '. $row['model'] . ' ' . $row['tahun']?>
               </a>
-            </h5>
+              </h4>
 
-            <?php if (badge($row['tgl_jual']) == true): ?>
-              <span class="badge badge-danger"> Laku </span>
-            <?php else: ?>
-              <span class="badge badge-success"> Ready </span>
-            <?php endif; ?>
+              <p class="card-text">
+                <?php if (badge($row['tgl_jual']) == true): ?>
+                  <span class="badge badge-danger"> Laku </span>
+                <?php else: ?>
+                  <span class="badge badge-success"> Ready </span>
+                <?php endif; ?>
+              </p>
 
-            <h5> <?= rupiah($row['hrg_jual']) ?></h5>
-
-            <p>
+              <h5> <?= rupiah($row['hrg_jual']) ?></h5>
+            </div>
+            <div class="card-footer">
               <?php if ($login == true): ?>
                 <?php if ($super_user == true): ?>
                   <a class="btn btn-info btn-sm" href="mobil-tambah.php">Add</a>
@@ -45,12 +46,10 @@ $result = tampil_data('mobil', 'id_mobil');
                 <?php endif; ?>
               <?php endif; ?>
               <a class="btn btn-info btn-sm" href="transaksi-wishlist.php?id=<?=$row['id_mobil']?>">Beli</a>
-            </p>
+            </div>
           </div>
         </div>
-      </div>
-    <?php } ?>
-
+      <?php } ?>
     </div>
     <!-- /.row -->
 

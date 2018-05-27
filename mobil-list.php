@@ -22,9 +22,21 @@ if ($login == true) {
       <div class="card-body">
         <form method="post">
           <div class="form-group">
-            <input type="text" class="form-control" id="myInput" onkeyup="myFunction('7')" placeholder="Search for names..">
+            <input type="text" class="form-control" id="myInput" onkeyup="myFunction('2')" placeholder="Search for names..">
           </div>
+          <select id="merk" onchange="myFunc()">
+            <option value="1">Merk</option>
+            <option value="2">No Polisi</option>
+          </select>
         </form>
+
+        <script type="text/javascript">
+        function myFunc() {
+          var x = document.getElementById('merk').value
+          console.log(x)
+        }
+
+        </script>
 
         <?php
         $result = tampil_data('mobil', 'id_mobil');
@@ -49,7 +61,7 @@ if ($login == true) {
         <tbody>
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
-          <td> <span class="badge"><?= $row['id_mobil'] ?></span> </td>
+          <td> <?= $row['id_mobil'] ?> </td>
           <td><?= pilih_kolom('merk_mbl', 'merk', 'id_merk', $row['id_merk']) ?></td>
           <td><?= $row['no_polisi'] ?></td>
           <td><?= $row['model'] ?></td>

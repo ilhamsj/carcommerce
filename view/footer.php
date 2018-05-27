@@ -1,10 +1,34 @@
     </div>
     <footer class="py-5">
-      <div class="container text-center">
+      <div class="container">
         <hr>
-        <a href="#" class=""> <i class="fa fa-phone" aria-hidden="true"></i> (021) 70454598 </a>/
-        <a href="#" class=""> <i class="fa fa-whatsapp" aria-hidden="true"></i> 081807857733 </a>/
-        <a href="#" class=""> <i class="fa fa-envelope-o" aria-hidden="true"></i>artikhansa11@gmail.com </a>
+        <div class="row">
+          <div class="col-lg-3">
+            <address>
+              <strong>Twitter, Inc.</strong><br>
+              1355 Market St, Suite 900
+              San Francisco, CA 94103<br>
+            </address>
+          </div>
+
+          <div class="col">
+            <ul class="list-group list-group-flush">
+              <a href="#" class="list-group-item text-muted" > Social Link </a>
+              <li class="list-group-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"> </i> mobilindo  </a></li>
+              <li class="list-group-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> mobilindo </a></li>
+              <li class="list-group-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> mobilindo_jaya </a></li>
+            </ul>
+          </div>
+
+          <div class="col">
+            <ul class="list-group list-group-flush">
+              <a href="#" class="list-group-item text-muted" > Kontak </a>
+              <li class="list-group-item"><a href="#"><i class="fa fa-phone" aria-hidden="true"> </i> (021) 70454598</a> </li>
+              <li class="list-group-item"><a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i> 081807857733 </a></li>
+              <li class="list-group-item"><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> artikhansa11@gmail.com </a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
 

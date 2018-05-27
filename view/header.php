@@ -40,20 +40,37 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <?php if ($login == true): ?>
+                    <a href="tanya-admin.php" class="dropdown-item">
+                      <i class="fa fa-inbox" aria-hidden="true"></i> Inbox
+                    </a>
                     <?php if ($super_user == true): ?>
-                      <a href="tanya-admin.php" class="dropdown-item"> Pesan </a>
-                      <a href="mobil-list.php" class="dropdown-item"> Data Mobil </a>
-                      <a href="user-list.php" class="dropdown-item"> Data User </a>
-                      <a href="transaksi-list.php" class="dropdown-item"> Data Transaksi </a>
-                      <a href="mobil-tambah.php" class="dropdown-item"> Tambah Mobil </a>
+                      <a href="mobil-list.php" class="dropdown-item">
+                        <i class="fa fa-car" aria-hidden="true"></i> Data Mobil
+                      </a>
+                      <a href="user-list.php" class="dropdown-item">
+                        <i class="fa fa-address-book" aria-hidden="true"></i> Data User
+                      </a>
+                      <a href="transaksi-list.php" class="dropdown-item">
+                        <i class="fa fa-money" aria-hidden="true"></i> Data Transaksi
+                      </a>
+                      <a href="mobil-tambah.php" class="dropdown-item">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Mobil
+                      </a>
                     <?php else: ?>
-                      <a href="tanya-admin.php" class="dropdown-item"> Inbox </a>
-                      <a href="profile.php" class="dropdown-item"> Transaksi </a>
+                      <a href="profile.php" class="dropdown-item">
+                      <i class="fa fa-address-book" aria-hidden="true"></i> Transaksi
+                      </a>
                     <?php endif; ?>
-                    <a href="logout.php" class="dropdown-item"> Logout </a>
+                    <a href="logout.php" class="dropdown-item">
+                      <i class="fa fa-sign-out" aria-hidden="true"></i> Keluar
+                    </a>
                   <?php else: ?>
-                    <a href="login.php" class="dropdown-item"> Login </a>
-                    <a href="daftar.php" class="dropdown-item"> Daftar </a>
+                    <a href="login.php" class="dropdown-item">
+                      <i class="fa fa-sign-in" aria-hidden="true"></i> Masuk
+                    </a>
+                    <a href="daftar.php" class="dropdown-item">
+                      <i class="fa fa-address-book" aria-hidden="true"></i> Daftar
+                    </a>
                   <?php endif; ?>
                 </div>
               </li>

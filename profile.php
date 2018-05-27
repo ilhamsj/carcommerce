@@ -51,11 +51,11 @@ if ($login == true):
                   </a> <br/>
                   <a href="pemesanan-delete.php?id=<?= $id_psn ?>" class="badge badge-danger">Hapus</a>
                 <?php else: ?>
-                  <a href="transaksi-pembayaran.php?id=<?= $id_psn ?>" class="badge badge-success">Transaksi Berhasil</a>
+                  <span class="badge badge-success">Transaksi Berhasil</span>
                 <?php endif; ?>
               <?php else: ?>
                   <a href="transaksi-pembayaran.php?id=<?= $id_psn ?>" class="badge badge-primary">Lanjutkan ke proses pembayaran</a><br/>
-                  <a href="pemesanan-delete.php?id=<?= $id_psn ?>" class="badge badge-danger">Hapus</a> 
+                  <a href="pemesanan-delete.php?id=<?= $id_psn ?>" class="badge badge-danger">Hapus</a>
               <?php endif; ?>
 
 

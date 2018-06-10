@@ -38,7 +38,7 @@ function id_akhir($column, $key) {
 
 //
 function tampil_data($column, $key) {
-  $query  = "SELECT * FROM $column ORDER BY $key DESC";
+  $query  = "SELECT * FROM $column ORDER BY $key ASC";
   return run($query);
 }
 
@@ -102,8 +102,8 @@ function total_harga() {
   return run($query);
 }
 
-function pembayaran($val1, $val2, $val3, $val4, $val5, $val7, $val8) {
-  $query = "INSERT INTO pembayaran VALUES ('$val1', '$val2', '$val3', '$val4', '$val5', CURRENT_TIMESTAMP(), '$val7', '$val8')";
+function pembayaran($val1, $val2, $val3, $val4, $val5, $val7, $val8, $val9) {
+  $query = "INSERT INTO pembayaran VALUES ('$val1', '$val2', '$val3', '$val4', '$val5', CURRENT_TIMESTAMP(), '$val7', '$val8', '$val9')";
   return run($query);
 }
 
@@ -118,6 +118,32 @@ function cek_status_pembayaran($id) {
   while ($row = mysqli_fetch_assoc(run($query))):
     return $row['status'];
   endwhile;
+}
+
+function cek_konten($column, $key, $value) {
+  $query  = "SELECT * FROM $column WHERE $key='$value'";
+  if (mysqli_num_rows(run($query)) > 0) return true;
+  else return false;
+}
+
+function tambah_deskripsi($id_des, $id_mbl, $val1, $val2, $val3, $val4, $val5, $val6, $val7, $val8, $val9) {
+  $query = "INSERT INTO deskripsi VALUES ('$id_des', '$id_mbl', '$val1', '$val2', '$val3', '$val4', '$val5', '$val6', '$val7', '$val8', '$val9')";
+  return run($query);
+}
+
+function tampil_deskripsi($id) {
+  $query = "SELECT * FROM deskripsi WHERE id_mobil='$id'";
+  return run($query);
+}
+
+function cetak_mobil() {
+  $query = "SELECT merk.merk_mbl, mobil.* FROM merk INNER JOIN mobil ON merk.id_merk = mobil.id_merk";
+  return run($query);
+}
+
+function total_mobil() {
+  $query = "SELECT COUNT(hrg_beli) FROM mobil";
+  return run($query);
 }
 
 ?>

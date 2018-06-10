@@ -37,7 +37,7 @@ $result = tampil_data('mobil', 'id_mobil');
             <div class="card-footer">
               <?php if ($login == true): ?>
                 <?php if ($super_user == true): ?>
-                  <a class="btn btn-info btn-sm" href="mobil-tambah.php">Add</a>
+                  <a class="btn btn-info btn-sm" href="mobil-tambah.php">Add new</a>
                   <a class="btn btn-secondary btn-sm" href="mobil-edit.php?id=<?=$row['id_mobil']?>">Edit </a>
                   <a class="btn btn-danger btn-sm" href="mobil-delete.php?id=<?=$row['id_mobil']?>">Del</a>
                 <?php else: ?>

@@ -6,14 +6,8 @@ if ($login == true) {
   if ($super_user == true) {
 ?>
 
-<div class="row">
 
-  <div class="col-lg-3">
-    <?php include 'menu.php'; ?>
-  </div>
-  <!-- /.col-lg-3 -->
-
-  <div class="col-lg-9">
+  <div class="col">
 
     <div class="card card-outline-secondary">
       <div class="card-header">
@@ -28,16 +22,17 @@ if ($login == true) {
         </form>
 
         <?php
-        $result = tampil_data('member', 'id_member');
+          $result = tampil_data('member', 'id_member');
         ?>
 
-        <table class="table table-responsive" id="myTable">
+        <table class="table table-striped table-sm" id="myTable">
           <thead>
             <tr>
               <th>ID User</th>
               <th>Nama</th>
               <th>Email</th>
               <th>Alamat</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -47,24 +42,26 @@ if ($login == true) {
               <td><?= ucfirst($row['nm_lgkp']); ?></td>
               <td><?= ucfirst($row['email']); ?></td>
               <td><?= ucfirst($row['alamat']); ?></td>
+              <td><?= level_member($row['level'])?></td>
             </tr>
             <?php } ?>
+
+            <tr>
+              <td colspan="3"> <h4>Total User</h4> </td>
+              <td>  </td>
+            </tr>
 
           </tbody>
         </table>
       </div>
       <div class="card-footer">
-        <a href="cetak-mobil.php" class="btn btn-primary"> Cetak </a>
+        <a href="cetak/cetak-user.php" class="btn btn-primary"> Cetak </a>
       </div>
     </div>
     <!-- /.card -->
 
   </div>
   <!-- /.col-lg-9 -->
-
-</div>
-<!-- /.row -->
-
 
 <?php
   } else {

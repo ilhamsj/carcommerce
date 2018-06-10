@@ -14,10 +14,14 @@
     <div class="carousel-item">
       <img class="d-block img-fluid" src="upload/<?=$row['gambar']?>" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
-        <h5><?=$row['hrg_jual']?></h5>
-        <p>
-          <span class="badge badge-danger">Danger</span>
-        </p>
+        <h4 class="bg-warning">
+          Seri Terbaru
+        </h4>
+
+        <a href="mobil-detail.php?id=<?=$row['id_mobil']?>" class="btn btn-primary mb-2" >
+          Detail
+        </a>
+
       </div>
     </div>
     <?php } ?>

@@ -10,6 +10,7 @@ if ($login == true):
     $total  = $row['total_byr'];
     $tgl    = $row['tgl_byr'];
     $status = $row['status'];
+    $bank   = $row['mtd_byr'];
   endwhile;
 
   $id_mobil = pilih_kolom('id_mobil', 'pemesanan', 'id_pemesanan', $pms);
@@ -48,10 +49,20 @@ if ($login == true):
             Upload Bukti Bayar
           </div>
           <div class="card-body">
-            <p>Selesaikan pembayaran senilai</p>
+            <p>Selesaikan pembayaran</p>
+            Transfer ke Rekening
+            <?=$bank?>
+            <b>
+            <?php if ($bank=='bca'): ?>
+              12345
+            <?php else: ?>
+              2834388
+            <?php endif; ?>
+            </b>
+            atas nama Arti Khansa, senilai
             <h5><?=rupiah($total)?></h5>
             <p class="card-text">
-              Dengan Upload bukti transfer.
+              Silahkan Upload bukti transfer !
             </p>
             <form method="post" enctype="multipart/form-data">
               <div class="form-group">

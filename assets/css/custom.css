@@ -1,15 +1,16 @@
+body {
+  /* font-family: 'Roboto Condensed', sans-serif; */
+  padding-top: 54px;
+}
+
 input[type="text"], input[type="search"], input[type="password"], textarea, .form-control {
-outline: none;
-box-shadow:none !important;
-border:1px solid #ccc !important;
+  outline: none;
+  box-shadow:none !important;
+  border:1px solid #ccc !important;
 }
 
 .bootstrap-select .btn:focus {
     outline: none !important;
-}
-body {
-  font-family: 'Roboto Condensed', sans-serif;
-  padding-top: 54px;
 }
 
 .minim {

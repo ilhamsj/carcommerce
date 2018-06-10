@@ -17,6 +17,11 @@ if ($login == true):
   <div class="col-lg-9">
     <div class="card-body">
       <table class="table">
+        <thead>
+          <th colspan="5">
+            <h4>Transaksi Anda</h4>
+          </th>
+        </thead>
         <tbody>
 
           <?php

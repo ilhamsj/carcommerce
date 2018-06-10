@@ -42,4 +42,12 @@ function badge($jual) {
   }
 }
 
+function level_member($level) {
+  if ($level == 1) {
+    $status = "<span class='badge badge-primary'>Admin</span>";
+  } else {
+    $status = "<span class='badge badge-secondary'>User</span>";
+  }
+  return $status;
+}
 ?>

@@ -27,11 +27,12 @@ if ($login == true):
     $val2 = $_GET['id'];
     $val3 =  pilih_kolom('id_member', 'member', 'username', $_SESSION['user']);
     $val4 = $_POST['bank'];
-    $val5 = 2000000;
+    $val5 = $harga;
     $val7 = NULL;
     $val8 = 0;
+    $val9 = $_POST['rekening'];
 
-    if (pembayaran($val1, $val2, $val3, $val4, $val5, $val7, $val8)) {
+    if (pembayaran($val1, $val2, $val3, $val4, $val5, $val7, $val8, $val9)) {
       redirect_url('transaksi-upload.php?id='.$val1);
     } else {
       echo "g berhasil";
@@ -110,10 +111,15 @@ if ($login == true):
                   <label class="custom-control-label" for="mandiri">Bank Mandiri</label>
                 </div>
 
-                <div class="custom-control custom-radio">
+                <div class="form-group custom-control custom-radio">
                   <input type="radio" class="custom-control-input" id="bca" name="bank" value="bca" required>
                   <label class="custom-control-label" for="bca">Bank BCA</label>
-                </div> <br/>
+                </div>
+
+                <div class="form-group">
+                  <label for="rekening">No Rekening Anda</label>
+                  <input name="rekening" type="number" class="form-control" placeholder="No Rekening" required>
+                </div>
 
                 <button type="submit" name="submit" class="btn btn-outline-primary">Bayar</button>
                 <button type="button" class="btn btn-outline-primary">Batal</button>

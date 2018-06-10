@@ -9,10 +9,15 @@
 
     <title>Shop Homepage - Mobil Shop</title>
     <link rel="icon" href="assets\images\apple-touch-icon.png">
-    <link href="assets\css\roboto.css" rel="stylesheet">
-    <link href="assets\css\custom.css" rel="stylesheet">
     <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.css">
     <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="assets\css\roboto.css">
+    <link rel="stylesheet" href="assets\css\custom.css">
+    <style media="screen">
+      body {
+        font-family: roboto !important;
+      }
+    </style>
   </head>
 
   <body>
@@ -34,16 +39,21 @@
 
           <div class=" my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <?php if ($login == true): ?>
+                  <a class="nav-link" href="index.php"> <?=$_SESSION['user']?> <span class="sr-only">(current)</span></a>
+                <?php else: ?>
+                  <a class="nav-link" href="login.php">Silahkan Login</a>
+                <?php endif; ?>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <?php if ($login == true): ?>
-                    <a href="tanya-admin.php" class="dropdown-item">
-                      <i class="fa fa-inbox" aria-hidden="true"></i> Inbox
-                    </a>
                     <?php if ($super_user == true): ?>
+
                       <a href="mobil-list.php" class="dropdown-item">
                         <i class="fa fa-car" aria-hidden="true"></i> Data Mobil
                       </a>
@@ -61,13 +71,14 @@
                       <i class="fa fa-address-book" aria-hidden="true"></i> Transaksi
                       </a>
                     <?php endif; ?>
+                    <div class="dropdown-divider"></div>
+                    <a href="tanya-admin.php" class="dropdown-item">
+                      <i class="fa fa-inbox" aria-hidden="true"></i> Inbox
+                    </a>
                     <a href="logout.php" class="dropdown-item">
                       <i class="fa fa-sign-out" aria-hidden="true"></i> Keluar
                     </a>
                   <?php else: ?>
-                    <a href="login.php" class="dropdown-item">
-                      <i class="fa fa-sign-in" aria-hidden="true"></i> Masuk
-                    </a>
                     <a href="daftar.php" class="dropdown-item">
                       <i class="fa fa-address-book" aria-hidden="true"></i> Daftar
                     </a>
@@ -82,4 +93,4 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container minim mt-4">
+    <div class="container minim mt-4 mb-4">

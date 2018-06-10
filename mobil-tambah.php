@@ -17,13 +17,13 @@ if ($login == true) {
       $col9   = $_POST['tglbeli'];
       $col10  = null;
       $col11  = $_FILES['gambar']['name'];
-      $col12  = "lorem lorem";
+      $col12  = $_POST['deskripsi'];
 
       $asal  = $_FILES['gambar']['tmp_name'];
 
       if (tambah_data($col1, $col2, $col3, $col4, $col5, $col6, $col7, $col8, $col9, $col10, $col11, $col12)) {
         move_uploaded_file($asal, "upload/".$col11);
-        redirect_url('index.php');
+        redirect_url('deskripsi-tambah.php?id='.$col1);
       } else {
         echo "g berhasil";
       }
@@ -103,6 +103,11 @@ if ($login == true) {
           <div class="form-group">
             <label for="gambar">Upload Gambar</label>
             <input type="file" class="form-control-file" name="gambar" required>
+          </div>
+
+          <div class="form-group">
+            <label for="deskripsi">Deskripsi Lain</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
           </div>
 
           <div class="form-group">
